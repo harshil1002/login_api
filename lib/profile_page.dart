@@ -8,14 +8,15 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  bool _switchvalue = false;
-  ThemeData _darkthem = ThemeData(brightness: Brightness.dark);
-  ThemeData _lightthem = ThemeData(brightness: Brightness.light);
+  bool _switchValue = false;
+  ThemeData _darkThem = ThemeData(brightness: Brightness.dark);
+  ThemeData _lightThem = ThemeData(brightness: Brightness.light);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: _switchvalue ? _darkthem : _lightthem,
+      debugShowCheckedModeBanner: false,
+      theme: _switchValue ? _darkThem : _lightThem,
       home: Scaffold(
         body: Container(
           height: MediaQuery.of(context).size.height,
@@ -24,7 +25,7 @@ class _ProfilePageState extends State<ProfilePage> {
               // Container(
               //   decoration: BoxDecoration(
               //     image: DecorationImage(
-              //       image: AssetImage('assets/images/dark_bg.png'),
+              //       image: AssetImage('assets/images/loginPage01.jpg'),
               //       fit: BoxFit.cover,
               //     ),
               //   ),
@@ -32,7 +33,7 @@ class _ProfilePageState extends State<ProfilePage> {
               // Container(
               //   decoration: BoxDecoration(
               //     image: DecorationImage(
-              //       image: AssetImage('assets/images/loginpage01.jpg'),
+              //       image: AssetImage('assets/images/dark_bg.png'),
               //       fit: BoxFit.cover,
               //     ),
               //   ),
@@ -48,26 +49,28 @@ class _ProfilePageState extends State<ProfilePage> {
                           GestureDetector(
                             onTap: () {
                               setState(() {
-                                _switchvalue = !_switchvalue;
+                                _switchValue = !_switchValue;
                               });
                             },
-                            child: _switchvalue
-                                ? Expanded(
-                                  child: Image.asset(
-                                      'assets/images/sun_lightTheme.png'),
-                                )
-                                : Expanded(
-                                  child: Image.asset(
-                                      'assets/images/moon_darkTheme.png'),
-                                ),
+                            child: _switchValue
+                                ? Image.asset('assets/icons/sun_lightTheme.png',
+                                    height: 35,
+                                    color: Colors.white,
+                                    cacheWidth: 500)
+                                : Image.asset('assets/icons/moon_darkTheme.png',
+                                    height: 35,
+                                    color: Colors.black,
+                                    cacheWidth: 500),
                           ),
-                          Icon(
-                            _switchvalue ? Icons.search_rounded : Icons.close,
-                            color: Colors.white,
-                          ),
+                          // Icon(
+                          //   _switchValue ? Icons.search_rounded : Icons.close,
+                          //   color: Colors.white,
+                          // ),
                           Text(
                             'Edit Profile',
-                            style: TextStyle(fontSize: 23, color: Colors.white),
+                            style: TextStyle(
+                              fontSize: 23,
+                            ),
                           ),
                           GestureDetector(
                             onTap: () {
@@ -81,7 +84,8 @@ class _ProfilePageState extends State<ProfilePage> {
                             child: Text(
                               'Save',
                               style: TextStyle(
-                                  fontSize: 20, color: Colors.white60),
+                                fontSize: 20,
+                              ),
                             ),
                           ),
                         ],
@@ -94,15 +98,21 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       ),
                       SizedBox(height: 20),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'PROFILE PHOTO',
-                            style: TextStyle(fontSize: 18, color: Colors.white),
-                          ),
-                        ],
-                      ),
+                      Stack(children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'PROFILE PHOTO',
+                              style: TextStyle(fontSize: 18),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [Icon(Icons.edit)],
+                        ),
+                      ]),
                       SizedBox(height: 20),
                       Padding(
                         padding: const EdgeInsets.only(left: 15),
