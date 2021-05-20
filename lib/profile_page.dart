@@ -8,14 +8,14 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  bool _switchvalue = false;
-  ThemeData _darkthem = ThemeData(brightness: Brightness.dark);
-  ThemeData _lightthem = ThemeData(brightness: Brightness.light);
+  bool _switchValue = false;
+  ThemeData _darkThem = ThemeData(brightness: Brightness.dark);
+  ThemeData _lightThem = ThemeData(brightness: Brightness.light);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: _switchvalue ? _darkthem : _lightthem,
+      theme: _switchValue ? _darkThem : _lightThem,
       home: Scaffold(
         body: Container(
           height: MediaQuery.of(context).size.height,
@@ -48,10 +48,10 @@ class _ProfilePageState extends State<ProfilePage> {
                           GestureDetector(
                             onTap: () {
                               setState(() {
-                                _switchvalue = !_switchvalue;
+                                _switchValue = !_switchValue;
                               });
                             },
-                            child: _switchvalue
+                            child: _switchValue
                                 ? Expanded(
                                   child: Image.asset(
                                       'assets/images/sun_lightTheme.png'),
@@ -62,7 +62,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 ),
                           ),
                           Icon(
-                            _switchvalue ? Icons.search_rounded : Icons.close,
+                            _switchValue ? Icons.search_rounded : Icons.close,
                             color: Colors.white,
                           ),
                           Text(

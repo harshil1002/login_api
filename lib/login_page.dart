@@ -16,10 +16,7 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          height: MediaQuery
-              .of(context)
-              .size
-              .height,
+          height: MediaQuery.of(context).size.height,
           child: Stack(
             children: [
               Container(
@@ -73,7 +70,7 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                             validator: (_email) {
                               bool _emailValid = RegExp(
-                                  r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                                   .hasMatch(_email);
                               if (_email.isEmpty)
                                 return 'Please Enter Your Email';
@@ -104,12 +101,10 @@ class _LoginPageState extends State<LoginPage> {
                                 child: Icon(_hidePass
                                     ? Icons.visibility
                                     : Icons.visibility_off),
-                                onLongPress: () =>
-                                {
+                                onLongPress: () => {
                                   setState(() => _hidePass = false),
                                 },
-                                onLongPressEnd: (_) =>
-                                {
+                                onLongPressEnd: (_) => {
                                   setState(() => _hidePass = true),
                                 },
                               ),
@@ -117,7 +112,7 @@ class _LoginPageState extends State<LoginPage> {
                             // autovalidateMode: AutovalidateMode.always,
                             validator: (_password) {
                               bool _passwordValid =
-                              RegExp(r"^[0-9]+$").hasMatch(_password);
+                                  RegExp(r"^[0-9]+$").hasMatch(_password);
                               if (_password.isEmpty)
                                 return 'Please Enter Your Password';
                               if (!_passwordValid)
@@ -133,8 +128,11 @@ class _LoginPageState extends State<LoginPage> {
                           GestureDetector(
                             onTap: () {
                               // if(_form.currentState.validate())
-                                Navigator.push(context,MaterialPageRoute(builder: (context)=> ProfilePage()),
-                                );
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ProfilePage()),
+                              );
                             },
                             child: Container(
                               padding: EdgeInsets.symmetric(
@@ -182,23 +180,20 @@ class _LoginPageState extends State<LoginPage> {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            Navigator
-                                .push(context,MaterialPageRoute(builder: (context)
-                            =>
-                                SingUPPage()
-                            ));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => SingUPPage()));
                           },
                           child: RichText(
                             text: TextSpan(
-                              text:
-                              "Don't have an account? ",
+                              text: "Don't have an account? ",
                               style: TextStyle(
                                   fontSize: 17,
                                   fontFamily: 'Roboto',
                                   color: Colors.black,
                                   fontWeight: FontWeight.normal),
                               children: <TextSpan>[
-
                                 TextSpan(
                                   text: 'Read More',
                                   style: TextStyle(
@@ -214,7 +209,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ],
                 ),
-              )
+              ),
             ],
           ),
         ),
