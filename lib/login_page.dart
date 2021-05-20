@@ -22,7 +22,7 @@ class _LoginPageState extends State<LoginPage> {
               Container(
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage('assets/images/loginpage01.jpg'),
+                    image: AssetImage('assets/images/loginPage01.jpg'),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -60,7 +60,6 @@ class _LoginPageState extends State<LoginPage> {
                               hintText: 'Email',
                               hintStyle: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  color: Colors.white,
                                   fontSize: 18),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.all(
@@ -90,7 +89,6 @@ class _LoginPageState extends State<LoginPage> {
                               hintText: 'Password',
                               hintStyle: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  color: Colors.white,
                                   fontSize: 18),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.all(
@@ -191,7 +189,6 @@ class _LoginPageState extends State<LoginPage> {
                               style: TextStyle(
                                   fontSize: 17,
                                   fontFamily: 'Roboto',
-                                  color: Colors.black,
                                   fontWeight: FontWeight.normal),
                               children: <TextSpan>[
                                 TextSpan(

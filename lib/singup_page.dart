@@ -1,5 +1,12 @@
+import 'dart:convert';
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:http/http.dart';
+import 'package:login_api/config.dart';
+import 'package:login_api/login_page.dart';
 import 'package:login_api/profile_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SingUPPage extends StatefulWidget {
   @override
@@ -9,6 +16,9 @@ class SingUPPage extends StatefulWidget {
 class _SingUPPageState extends State<SingUPPage> {
   bool _hidePass = true;
   GlobalKey<FormState> _form = GlobalKey<FormState>();
+  String name = "";
+  String email = "";
+  String password = "";
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +31,7 @@ class _SingUPPageState extends State<SingUPPage> {
               Container(
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage('assets/images/loginpage01.jpg'),
+                    image: AssetImage('assets/images/loginPage01.jpg'),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -33,7 +43,7 @@ class _SingUPPageState extends State<SingUPPage> {
                   children: [
                     Container(
                       padding: EdgeInsets.all(20),
-                      height: 350,
+                      height: 430,
                       width: double.infinity,
                       decoration: BoxDecoration(
                         color: Colors.white,
@@ -70,7 +80,6 @@ class _SingUPPageState extends State<SingUPPage> {
                                             hintText: 'Name',
                                             hintStyle: TextStyle(
                                                 fontWeight: FontWeight.bold,
-                                                color: Colors.white,
                                                 fontSize: 18),
                                             border: OutlineInputBorder(
                                               borderRadius: BorderRadius.all(
@@ -78,6 +87,7 @@ class _SingUPPageState extends State<SingUPPage> {
                                               ),
                                             ),
                                           ),
+                                          onChanged: (val) => name = val,
                                           validator: (_name) {
                                             bool _nameValid =
                                                 RegExp(r"^[a-zA-Z]+$")
@@ -99,7 +109,6 @@ class _SingUPPageState extends State<SingUPPage> {
                                           hintText: 'Email',
                                           hintStyle: TextStyle(
                                               fontWeight: FontWeight.bold,
-                                              color: Colors.white,
                                               fontSize: 18),
                                           border: OutlineInputBorder(
                                             borderRadius: BorderRadius.all(
@@ -107,6 +116,7 @@ class _SingUPPageState extends State<SingUPPage> {
                                             ),
                                           ),
                                         ),
+                                        onChanged: (val) => email = val,
                                         validator: (_email) {
                                           bool _emailValid = RegExp(
                                                   r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
@@ -129,7 +139,6 @@ class _SingUPPageState extends State<SingUPPage> {
                                           hintText: 'Password',
                                           hintStyle: TextStyle(
                                               fontWeight: FontWeight.bold,
-                                              color: Colors.white,
                                               fontSize: 18),
                                           border: OutlineInputBorder(
                                             borderRadius: BorderRadius.all(
@@ -148,6 +157,7 @@ class _SingUPPageState extends State<SingUPPage> {
                                             },
                                           ),
                                         ),
+                                        onChanged: (val) => password = val,
                                         validator: (_password) {
                                           bool _passwordValid =
                                               RegExp(r"^[0-9]+$")
@@ -162,46 +172,89 @@ class _SingUPPageState extends State<SingUPPage> {
                                         },
                                       ),
                                       SizedBox(height: 20),
-                                      GestureDetector(
-                                        onTap: () {
-                                          // if (_form.currentState.validate())
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      ProfilePage()),
-                                            );
-                                        },
-                                        child: Container(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 20, vertical: 15),
-                                          decoration: BoxDecoration(
-                                            gradient: LinearGradient(
-                                              begin: FractionalOffset.topCenter,
-                                              end:
-                                                  FractionalOffset.bottomCenter,
-                                              colors: [
-                                                Colors.white.withOpacity(0.7),
-                                                Colors.lightBlue,
-                                              ],
-                                            ),
-                                            boxShadow: [
-                                              BoxShadow(
-                                                color: Colors.black,
-                                                spreadRadius: 0.5,
-                                                blurRadius: 15,
-                                                offset: Offset(2, 2),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          GestureDetector(
+                                            onTap: signupApi,
+                                            child: Container(
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 20, vertical: 15),
+                                              decoration: BoxDecoration(
+                                                gradient: LinearGradient(
+                                                  begin: FractionalOffset
+                                                      .topCenter,
+                                                  end: FractionalOffset
+                                                      .bottomCenter,
+                                                  colors: [
+                                                    Colors.white
+                                                        .withOpacity(0.7),
+                                                    Colors.lightBlue,
+                                                  ],
+                                                ),
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                    color: Colors.black,
+                                                    spreadRadius: 0.5,
+                                                    blurRadius: 15,
+                                                    offset: Offset(2, 2),
+                                                  ),
+                                                ],
+                                                borderRadius: BorderRadius.all(
+                                                  Radius.circular(13),
+                                                ),
                                               ),
-                                            ],
-                                            borderRadius: BorderRadius.all(
-                                              Radius.circular(13),
+                                              child: Text(
+                                                'Sing Up',
+                                                style: TextStyle(fontSize: 20),
+                                              ),
                                             ),
                                           ),
-                                          child: Text(
-                                            'Sing Up',
-                                            style: TextStyle(fontSize: 20),
+                                          GestureDetector(
+                                            onTap: () {
+                                              // if (_form.currentState.validate())
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        LoginPage()),
+                                              );
+                                            },
+                                            child: Container(
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 20, vertical: 15),
+                                              decoration: BoxDecoration(
+                                                gradient: LinearGradient(
+                                                  begin: FractionalOffset
+                                                      .topCenter,
+                                                  end: FractionalOffset
+                                                      .bottomCenter,
+                                                  colors: [
+                                                    Colors.white
+                                                        .withOpacity(0.7),
+                                                    Colors.lightBlue,
+                                                  ],
+                                                ),
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                    color: Colors.black,
+                                                    spreadRadius: 0.5,
+                                                    blurRadius: 15,
+                                                    offset: Offset(2, 2),
+                                                  ),
+                                                ],
+                                                borderRadius: BorderRadius.all(
+                                                  Radius.circular(13),
+                                                ),
+                                              ),
+                                              child: Text(
+                                                'Login',
+                                                style: TextStyle(fontSize: 20),
+                                              ),
+                                            ),
                                           ),
-                                        ),
+                                        ],
                                       ),
                                     ],
                                   ),
@@ -220,5 +273,47 @@ class _SingUPPageState extends State<SingUPPage> {
         ),
       ),
     );
+  }
+
+  void signupApi() async {
+    if (_form.currentState.validate()) {
+      var response =
+          await post(Uri.parse("${AppConfig.baseUrl}/response"), body: {
+        "name": "$name",
+        "email": "$email",
+        "password": "$password",
+        "device_token": "2fc80fec0483e2b54baf0a879088d770",
+        "device_type": "${Platform.isAndroid ? "android" : "ios"}",
+        "device_id": "1231231231"
+      });
+      if (response.statusCode == 200) {
+        var decoded = jsonDecode(response.body);
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        prefs.setString("TOKEN", decoded["data"]["token"]);
+        Fluttertoast.showToast(
+          msg: "${decoded["message"]}",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+        );
+        Navigator.push(
+            context, MaterialPageRoute(builder: (_) => ProfilePage()));
+      } else if (response.statusCode == 400) {
+        var decoded = jsonDecode(response.body);
+        List errors = decoded["data"]["error"];
+        showDialog(
+            context: context,
+            builder: (_) => AlertDialog(
+                  content: Column(
+                    children: errors.map((e) => Text(e)).toList(),
+                  ),
+                  actions: [
+                    TextButton(
+                        onPressed: () => Navigator.pop(context),
+                        child: Text('OK'))
+                  ],
+                ));
+      }
+    }
   }
 }

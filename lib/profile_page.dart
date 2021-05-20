@@ -15,6 +15,10 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+<<<<<<< HEAD
+=======
+      debugShowCheckedModeBanner: false,
+>>>>>>> c0393a49be9f98bc6afccd54be76998a0c5402e9
       theme: _switchValue ? _darkThem : _lightThem,
       home: Scaffold(
         body: Container(
@@ -24,7 +28,7 @@ class _ProfilePageState extends State<ProfilePage> {
               // Container(
               //   decoration: BoxDecoration(
               //     image: DecorationImage(
-              //       image: AssetImage('assets/images/dark_bg.png'),
+              //       image: AssetImage('assets/images/loginPage01.jpg'),
               //       fit: BoxFit.cover,
               //     ),
               //   ),
@@ -32,7 +36,7 @@ class _ProfilePageState extends State<ProfilePage> {
               // Container(
               //   decoration: BoxDecoration(
               //     image: DecorationImage(
-              //       image: AssetImage('assets/images/loginpage01.jpg'),
+              //       image: AssetImage('assets/images/dark_bg.png'),
               //       fit: BoxFit.cover,
               //     ),
               //   ),
@@ -52,6 +56,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               });
                             },
                             child: _switchValue
+<<<<<<< HEAD
                                 ? Expanded(
                                   child: Image.asset(
                                       'assets/images/sun_lightTheme.png'),
@@ -64,10 +69,26 @@ class _ProfilePageState extends State<ProfilePage> {
                           Icon(
                             _switchValue ? Icons.search_rounded : Icons.close,
                             color: Colors.white,
+=======
+                                ? Image.asset('assets/icons/sun_lightTheme.png',
+                                    height: 35,
+                                    color: Colors.white,
+                                    cacheWidth: 500)
+                                : Image.asset('assets/icons/moon_darkTheme.png',
+                                    height: 35,
+                                    color: Colors.black,
+                                    cacheWidth: 500),
+>>>>>>> c0393a49be9f98bc6afccd54be76998a0c5402e9
                           ),
+                          // Icon(
+                          //   _switchValue ? Icons.search_rounded : Icons.close,
+                          //   color: Colors.white,
+                          // ),
                           Text(
                             'Edit Profile',
-                            style: TextStyle(fontSize: 23, color: Colors.white),
+                            style: TextStyle(
+                              fontSize: 23,
+                            ),
                           ),
                           GestureDetector(
                             onTap: () {
@@ -81,7 +102,8 @@ class _ProfilePageState extends State<ProfilePage> {
                             child: Text(
                               'Save',
                               style: TextStyle(
-                                  fontSize: 20, color: Colors.white60),
+                                fontSize: 20,
+                              ),
                             ),
                           ),
                         ],
@@ -94,15 +116,21 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       ),
                       SizedBox(height: 20),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'PROFILE PHOTO',
-                            style: TextStyle(fontSize: 18, color: Colors.white),
-                          ),
-                        ],
-                      ),
+                      Stack(children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'PROFILE PHOTO',
+                              style: TextStyle(fontSize: 18),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [Icon(Icons.edit)],
+                        ),
+                      ]),
                       SizedBox(height: 20),
                       Padding(
                         padding: const EdgeInsets.only(left: 15),

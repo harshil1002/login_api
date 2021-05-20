@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:login_api/global_data.dart';
-import 'package:login_api/login_page.dart';
+import 'package:login_api/singup_page.dart';
+import 'package:login_api/theme_data.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       theme: GlobalData.themeData,
       darkTheme: GlobalData.darkThemeData,
       themeMode: GlobalData.themeMode,
-      home: LoginPage(),
+      home: SingUPPage(),
     );
   }
 }
