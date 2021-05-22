@@ -15,10 +15,7 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-<<<<<<< HEAD
-=======
       debugShowCheckedModeBanner: false,
->>>>>>> c0393a49be9f98bc6afccd54be76998a0c5402e9
       theme: _switchValue ? _darkThem : _lightThem,
       home: Scaffold(
         body: Container(
@@ -56,30 +53,28 @@ class _ProfilePageState extends State<ProfilePage> {
                               });
                             },
                             child: _switchValue
-<<<<<<< HEAD
                                 ? Expanded(
-                                  child: Image.asset(
-                                      'assets/images/sun_lightTheme.png'),
-                                )
+                                    child: Image.asset(
+                                        'assets/images/sun_lightTheme.png'),
+                                  )
                                 : Expanded(
-                                  child: Image.asset(
-                                      'assets/images/moon_darkTheme.png'),
-                                ),
+                                    child: Image.asset(
+                                        'assets/images/moon_darkTheme.png'),
+                                  ),
                           ),
                           Icon(
                             _switchValue ? Icons.search_rounded : Icons.close,
                             color: Colors.white,
-=======
-                                ? Image.asset('assets/icons/sun_lightTheme.png',
-                                    height: 35,
-                                    color: Colors.white,
-                                    cacheWidth: 500)
-                                : Image.asset('assets/icons/moon_darkTheme.png',
-                                    height: 35,
-                                    color: Colors.black,
-                                    cacheWidth: 500),
->>>>>>> c0393a49be9f98bc6afccd54be76998a0c5402e9
                           ),
+                          _switchValue
+                              ? Image.asset('assets/icons/sun_lightTheme.png',
+                                  height: 35,
+                                  color: Colors.white,
+                                  cacheWidth: 500)
+                              : Image.asset('assets/icons/moon_darkTheme.png',
+                                  height: 35,
+                                  color: Colors.black,
+                                  cacheWidth: 500),
                           // Icon(
                           //   _switchValue ? Icons.search_rounded : Icons.close,
                           //   color: Colors.white,
