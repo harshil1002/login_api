@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:login_api/singup_page.dart';
+import 'package:login_api/check_credential.dart';
 import 'package:login_api/theme_data.dart';
 
 void main() {
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       theme: GlobalData.themeData,
       darkTheme: GlobalData.darkThemeData,
       themeMode: GlobalData.themeMode,
-      home: SingUPPage(),
+      home: CheckCredential(),
     );
   }
 }

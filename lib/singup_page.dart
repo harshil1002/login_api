@@ -278,14 +278,15 @@ class _SingUPPageState extends State<SingUPPage> {
   void signupApi() async {
     if (_form.currentState.validate()) {
       var response =
-          await post(Uri.parse("${AppConfig.baseUrl}/response"), body: {
+          await post(Uri.parse("${AppConfig.baseUrl}/register"), body: {
         "name": "$name",
         "email": "$email",
         "password": "$password",
-        "device_token": "2fc80fec0483e2b54baf0a879088d770",
+        "device_token": "0a3d712fc81e2b85fdedd225cb5b1da4",
         "device_type": "${Platform.isAndroid ? "android" : "ios"}",
         "device_id": "1231231231"
       });
+      print(response.statusCode);
       if (response.statusCode == 200) {
         var decoded = jsonDecode(response.body);
         SharedPreferences prefs = await SharedPreferences.getInstance();

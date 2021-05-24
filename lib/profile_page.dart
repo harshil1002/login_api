@@ -53,32 +53,15 @@ class _ProfilePageState extends State<ProfilePage> {
                               });
                             },
                             child: _switchValue
-                                ? Expanded(
-                                    child: Image.asset(
-                                        'assets/images/sun_lightTheme.png'),
-                                  )
-                                : Expanded(
-                                    child: Image.asset(
-                                        'assets/images/moon_darkTheme.png'),
-                                  ),
+                                ? Image.asset('assets/icons/sun_lightTheme.png',
+                                    height: 35,
+                                    color: Colors.white,
+                                    cacheWidth: 500)
+                                : Image.asset('assets/icons/moon_darkTheme.png',
+                                    height: 35,
+                                    color: Colors.black,
+                                    cacheWidth: 500),
                           ),
-                          Icon(
-                            _switchValue ? Icons.search_rounded : Icons.close,
-                            color: Colors.white,
-                          ),
-                          _switchValue
-                              ? Image.asset('assets/icons/sun_lightTheme.png',
-                                  height: 35,
-                                  color: Colors.white,
-                                  cacheWidth: 500)
-                              : Image.asset('assets/icons/moon_darkTheme.png',
-                                  height: 35,
-                                  color: Colors.black,
-                                  cacheWidth: 500),
-                          // Icon(
-                          //   _switchValue ? Icons.search_rounded : Icons.close,
-                          //   color: Colors.white,
-                          // ),
                           Text(
                             'Edit Profile',
                             style: TextStyle(
