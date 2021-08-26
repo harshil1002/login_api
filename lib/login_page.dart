@@ -20,6 +20,7 @@ class _LoginPageState extends State<LoginPage> {
           child: Stack(
             children: [
               Container(
+                width: double.infinity,
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage('assets/images/loginPage01.jpg'),
@@ -54,6 +55,7 @@ class _LoginPageState extends State<LoginPage> {
                       child: Column(
                         children: [
                           TextFormField(
+
                             keyboardType: TextInputType.emailAddress,
                             decoration: InputDecoration(
                               prefixIcon: Icon(Icons.email),

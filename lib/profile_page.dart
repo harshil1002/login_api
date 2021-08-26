@@ -22,14 +22,14 @@ class _ProfilePageState extends State<ProfilePage> {
           height: MediaQuery.of(context).size.height,
           child: Stack(
             children: [
-              // Container(
-              //   decoration: BoxDecoration(
-              //     image: DecorationImage(
-              //       image: AssetImage('assets/images/loginPage01.jpg'),
-              //       fit: BoxFit.cover,
-              //     ),
-              //   ),
-              // ),
+              Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/images/loginPage01.jpg'),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
               // Container(
               //   decoration: BoxDecoration(
               //     image: DecorationImage(

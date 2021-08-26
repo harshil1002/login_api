@@ -16,5 +16,5 @@ class MyApp extends StatelessWidget {
       themeMode: GlobalData.themeMode,
       home: CheckCredential(),
     );
-  }
+}
 }
